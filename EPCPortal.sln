@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPCPortal", "src\EPCPortal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPCPortalTesting", "EPCPortalTesting\EPCPortalTesting.csproj", "{0929C36B-6DC1-4907-B316-25CE43B80375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPCPortalWeb", "EPCPortalWeb\EPCPortalWeb.csproj", "{1F1C79D1-EB8B-4D47-A207-A3C4597E64F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{0929C36B-6DC1-4907-B316-25CE43B80375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0929C36B-6DC1-4907-B316-25CE43B80375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0929C36B-6DC1-4907-B316-25CE43B80375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F1C79D1-EB8B-4D47-A207-A3C4597E64F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F1C79D1-EB8B-4D47-A207-A3C4597E64F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F1C79D1-EB8B-4D47-A207-A3C4597E64F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F1C79D1-EB8B-4D47-A207-A3C4597E64F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
