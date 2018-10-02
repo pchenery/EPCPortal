@@ -27,6 +27,11 @@ namespace EPCData.API
 
         private static SingleRequestParameter GetPostcodeParameter(string postcode)
         {
+            if (string.IsNullOrEmpty(postcode) || string.IsNullOrWhiteSpace(postcode))
+            {
+                throw new ArgumentException("Postcode cannot be null, empty or whitespace.");
+            }
+
             var postcodeValue = Regex.Replace(postcode, @"\s+", "");
 
             return new SingleRequestParameter(PostcodeParameterName, postcodeValue);
