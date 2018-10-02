@@ -1,6 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EPCPortalWeb;
 using EPCPortalWeb.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace EPCPortalTesting
@@ -8,10 +7,10 @@ namespace EPCPortalTesting
     [TestClass]
     public class DataHandlerModelTests
     {
-        DataHandlerModel dataHandlerModel = new DataHandlerModel();
+        private readonly DataHandlerModel dataHandlerModel = new DataHandlerModel();
 
-        List<string> MockAPIReturn = new List<string>()
-            {
+        private readonly List<string> propertyAddresses = new List<string>
+        {
                 "1 fake street",
                 "2 fake street",
                 "3 fake street",
@@ -19,47 +18,14 @@ namespace EPCPortalTesting
                 "5 fake street"
             };
 
-        List<string> GetListOfAddressesByPostcode(string postcode)
-        {
-            List<string> ListOfAddresses = new List<string>();
-            //API Call
-            ListOfAddresses = MockAPIReturn;
-            return ListOfAddresses;
-        }
-
-        [TestMethod]
-        public void SearchForAddresses_WhenPostcodeIsSubmitted_AddressNotNull()
-        {
-            List<string> addresses = GetListOfAddressesByPostcode("RM96BF");
-            Assert.IsNotNull(addresses);
-        }
-
-        [TestMethod]
-        public void SearchForAddresses_WHenPostcodeIsSubmitted_DoesNotReturnMoreThan10Results()
-        {
-            List<string> addresses = GetListOfAddressesByPostcode("RM96BF");
-            bool fail = true;
-            if (addresses.Count > 10)
-            {
-                fail = true;
-            }
-            else
-            {
-                fail = false;
-            }
-            Assert.IsFalse(fail);
-        }
-
         [TestMethod]
         public void FilterAddressesByHouseNumber_WhenHouseNumberInListOfAddresses_FilteredListIsNotNull()
         {
-            IEnumerable<string> newlist = dataHandlerModel.FilterAddressesByHouseNumber(3, MockAPIReturn);
+            var newlist = dataHandlerModel.FilterAddressesByHouseNumber(3, propertyAddresses);
             foreach (var item in newlist)
             {
                 Assert.AreEqual(item, "3 fake street");
             }
-
         }
-
     }
 }
