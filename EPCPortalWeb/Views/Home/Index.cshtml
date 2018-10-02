@@ -4,5 +4,10 @@
 @model DataHandlerModel
 
 <div class="main-content">
-    @Html.TextBoxFor(m => m.Postcode, new { placeholder = "Please enter a Postcode", @class = "form-control" })
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.Postcode, new { placeholder = "Please enter a Postcode", @class = "form-control" })
+        @Html.TextBoxFor(m=> m.HouseNumber,new { @type = "number", @class = "form-control"})
+        <input type="submit" value="Search" />
+    }
 </div>

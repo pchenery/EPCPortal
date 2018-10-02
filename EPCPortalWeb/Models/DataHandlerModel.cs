@@ -9,5 +9,8 @@ namespace EPCPortalWeb.Models
     {
         public string Postcode { get; set; }
         public int HouseNumber { get; set; }
+
+
     }
+
 }

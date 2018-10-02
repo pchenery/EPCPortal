@@ -10,30 +10,13 @@ namespace EPCPortalWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(DataHandlerModel dataHandlerModel)
         {
+            string postcode = dataHandlerModel.Postcode;
+            int houseNumber = dataHandlerModel.HouseNumber;
             return View();
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
