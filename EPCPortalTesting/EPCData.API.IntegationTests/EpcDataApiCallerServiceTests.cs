@@ -66,5 +66,17 @@ namespace EPCPortalTesting.EPCData.API.IntegationTests
 
             data.ElementAt(0).Postcode.Should().Be(ValidPostcode);
         }
+
+        [Test]
+        public async Task ExecuteRequestAsync_GivenValidPostcodeWith10OrMoreAddressesAndSizeIs10_Then10ResultsShouldBeReturned()
+        {
+            const string postcode = "E6 1BJ";
+            const int size = 10;
+            var parameters = new RequestParameters(postcode, size);
+
+            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+
+            data.Should().HaveCount(size);
+        }
     }
 }
