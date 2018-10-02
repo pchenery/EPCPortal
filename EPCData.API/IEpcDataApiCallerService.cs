@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EPCData.API
 {
     public interface IEpcDataApiCallerService
     {
-        Task<T> ExecuteRequestAsync<T>(RequestParameters requestParameters);
+        Task<IEnumerable<T>> ExecuteRequestAsync<T>(RequestParameters requestParameters);
     }
 }
