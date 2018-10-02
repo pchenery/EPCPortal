@@ -10,7 +10,8 @@ namespace EPCPortalTesting.EPCData.API.UnitTests
     {
         [TestCase("")]
         [TestCase(null)]
-        public void CreateNew_WhenPostcodeEmptyOrNull_ThenExceptionThrown(string postcodeValue)
+        [TestCase("  ")]
+        public void CreateNew_WhenPostcodeEmptyNullOrWhitespace_ThenExceptionThrown(string postcodeValue)
         {
             const int sizeValue = 1;
 
@@ -48,14 +49,14 @@ namespace EPCPortalTesting.EPCData.API.UnitTests
         [TestCase("ABC 123")]
         [TestCase(" ABC123")]
         [TestCase("ABC123 ")]
-        public void CreateNew_WhenPostcodeProvidedContainingSpaces_ThenSpaceIsRemoved(string postcodeValue)
+        public void CreateNew_WhenPostcodeStringContainsSpaces_ThenSpaceIsRemovedFromPostcodeValue(string postcode)
         {
             const string expectedPostcodeValue = "ABC123";
             const int sizeValue = 1;
 
-            var requestParameters = new RequestParameters(postcodeValue, sizeValue);
+            var requestParameters = new RequestParameters(postcode, sizeValue);
 
-            requestParameters.Postcode.Should().Be(expectedPostcodeValue);
+            requestParameters.Postcode.Value.Should().Be(expectedPostcodeValue);
         }
     }
 }
