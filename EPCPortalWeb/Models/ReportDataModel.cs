@@ -9,12 +9,12 @@ namespace EPCPortalWeb.Models
     {
         // class to structure data returned from the API into usable items for properties and methods
 
-        public double CurrHeatingCost { get; set; }
-        public double CurrC02Emmissions { get; set; }
-        public double CurrHotWaterCosts { get; set; }
-        public double CurrEnergyConsumption { get; set; }
-        public double CurrLightingCosts { get; set; }
-        public string CurrGlazingType { get; set; }
+        public double CurrentHeatingCost { get; set; }
+        public double CurrentC02Emmissions { get; set; }
+        public double CurrentHotWaterCosts { get; set; }
+        public double CurrentEnergyConsumption { get; set; }
+        public double CurrentLightingCosts { get; set; }
+        public string CurrentGlazingType { get; set; }
 
         public double PotentialHeatingCost { get; set; }
         public double PotentialC02Emmissions { get; set; }
@@ -23,7 +23,8 @@ namespace EPCPortalWeb.Models
         public double PotentialLightingCosts { get; set; }
         public string PotentialGlazingType { get; set; }
 
-        public Dictionary<string,double> Recommendations { get; set; }
+        public List<Recommendation> RecommendationsList { get; set; }
+        
 
         public ReportDataModel()
         {
@@ -49,9 +50,10 @@ namespace EPCPortalWeb.Models
 
         private void AddToRecommendations(string itemName, double potentialSavings)
         {
-            Dictionary<string, double> recommendations = new Dictionary<string, double>();
-            recommendations.Add(itemName, potentialSavings);
-            Recommendations = recommendations;
+            Recommendation recommendation = new Recommendation(itemName);
+            recommendation.ItemName = itemName;
+            recommendation.PotentialSaving = potentialSavings;
+            
         }
 
         private double GetPotentialSavings(double currentValue, double potentialValue)

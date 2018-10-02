@@ -2,6 +2,25 @@
 @{
     ViewData["Title"] = "Report";
 }
-
+@model IEnumerable<Recommendation>
 <h2>Report</h2>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>Recommended Change</th>
+            <th>Cost of Item</th>
+            <th>Potential Saving</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recommendation in Model)
+        {
+            <tr>
+                <td>@recommendation.ItemName</td>
+                <td>@recommendation.ItemCost</td>
+                <td>@recommendation.PotentialSaving</td>
+            </tr>
+        }
+    </tbody>
+</table>
 

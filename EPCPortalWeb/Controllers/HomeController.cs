@@ -17,9 +17,16 @@ namespace EPCPortalWeb.Controllers
             return View();
         }
 
-        public IActionResult Report()
+        public IActionResult Report(ReportDataModel reportDataModel)
         {
-            return View();
+            List<Recommendation> recommendationList = reportDataModel.RecommendationsList;
+            //API Call
+            reportDataModel.RecommendationsList = new List<Recommendation>();
+            //foreach (var item in //apicallreturn)
+            //{
+            //    recommendationList.Add(item);
+            //}
+            return View(recommendationList);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

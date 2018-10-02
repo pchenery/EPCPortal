@@ -11,114 +11,114 @@ namespace EPCPortalTesting
         ReportDataModel reportDataModel = new ReportDataModel();
         
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForHeating()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForHeating_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrHeatingCost = 201;
+            var current = reportDataModel.CurrentHeatingCost = 201;
             var potential = reportDataModel.PotentialHeatingCost = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Heating Costs", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForC02Emissions()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForC02Emissions_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrC02Emmissions = 25;
+            var current = reportDataModel.CurrentC02Emmissions = 25;
             var potential = reportDataModel.PotentialC02Emmissions = 20;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("C02 Emmissions", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForHotWater()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForHotWater_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrHotWaterCosts = 201;
+            var current = reportDataModel.CurrentHotWaterCosts = 201;
             var potential = reportDataModel.PotentialHotWaterCosts = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Hot Water", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForEnergyConsumption()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForEnergyConsumption_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrEnergyConsumption = 201;
+            var current = reportDataModel.CurrentEnergyConsumption = 201;
             var potential = reportDataModel.PotentialEnergyConsumption = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Energy Consumption", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForLighting()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsGreaterThanPotential_ForLighting_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrLightingCosts = 201;
+            var current = reportDataModel.CurrentLightingCosts = 201;
             var potential = reportDataModel.PotentialLightingCosts = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Lighting Costs", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
 
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForHeating()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForHeating_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrHeatingCost = 100;
+            var current = reportDataModel.CurrentHeatingCost = 100;
             var potential = reportDataModel.PotentialHeatingCost = 201;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Heating Costs", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForC02Emissions()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForC02Emissions_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrC02Emmissions = 10;
+            var current = reportDataModel.CurrentC02Emmissions = 10;
             var potential = reportDataModel.PotentialC02Emmissions = 20;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("C02 Emmissions", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForHotWater()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForHotWater_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrHotWaterCosts = 90;
+            var current = reportDataModel.CurrentHotWaterCosts = 90;
             var potential = reportDataModel.PotentialHotWaterCosts = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Hot Water", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLEssThanPotential_ForEnergyConsumption()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLEssThanPotential_ForEnergyConsumption_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrEnergyConsumption = 86;
+            var current = reportDataModel.CurrentEnergyConsumption = 86;
             var potential = reportDataModel.PotentialEnergyConsumption = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Energy Consumption", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForLighting()
+        public void CompareCurrentAndPotentialNumericalValues_WhereCurrentIsLessThanPotential_ForLighting_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrLightingCosts = 40;
+            var current = reportDataModel.CurrentLightingCosts = 40;
             var potential = reportDataModel.PotentialLightingCosts = 100;
             reportDataModel.CompareCurrentAndPotentialNumericalValues("Lighting Costs", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
 
         [TestMethod]
-        public void CompareCurrentAndPotentialAlphabeticalValues_WhereTripleGlazingIsNotCurrentlyUsed()
+        public void CompareCurrentAndPotentialAlphabeticalValues_WhereTripleGlazingIsNotCurrentlyUsed_RecommendationsListNotNull()
         {
-            var current = reportDataModel.CurrGlazingType = "Single";
+            var current = reportDataModel.CurrentGlazingType = "Single";
             var potential = reportDataModel.PotentialGlazingType = "Triple";
             reportDataModel.CompareCurrentAndPotentialAlphabeticalValues("Glazing Type", current, potential);
 
-            Assert.IsNotNull(reportDataModel.Recommendations);
+            Assert.IsNotNull(reportDataModel.RecommendationsList);
         }
         [TestMethod]
-        public void CompareCurrentAndPotentialAlphabeticalValues_WhereTripleGlazingIsCurrentlyUsed()
+        public void CompareCurrentAndPotentialAlphabeticalValues_WhereTripleGlazingIsCurrentlyUsed_RecommendationsListNull()
         {
-            var current = reportDataModel.CurrGlazingType = "Triple";
+            var current = reportDataModel.CurrentGlazingType = "Triple";
             var potential = reportDataModel.PotentialGlazingType = "Triple";
             reportDataModel.CompareCurrentAndPotentialAlphabeticalValues("Glazing Type", current, potential);
 
-            Assert.IsNull(reportDataModel.Recommendations);
+            Assert.IsNull(reportDataModel.RecommendationsList);
         }
     }
 }

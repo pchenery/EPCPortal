@@ -28,7 +28,7 @@ namespace EPCPortalTesting
         }
 
         [TestMethod]
-        public void SearchForAddresses_WhenPostcodeIsSubmitted()
+        public void SearchForAddresses_WhenPostcodeIsSubmitted_AddressNotNull()
         {
             List<string> addresses = GetListOfAddressesByPostcode("RM96BF");
             Assert.IsNotNull(addresses);
