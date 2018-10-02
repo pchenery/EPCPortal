@@ -1,4 +1,5 @@
-﻿using EPCPortalWeb.Models;
+﻿using System.Linq;
+using EPCPortalWeb.Models;
 using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -15,9 +16,23 @@ namespace EPCPortalTesting.EPCPortalWeb.IntegrationTests
             const string validPostcode = "E6 1BJ";
             var dataHandlerModel = new DataHandlerModel();
 
-            var listOfAddresses = await dataHandlerModel.GetListOfAddresses(validPostcode);
+            var listOfProperties = await dataHandlerModel.GetListOfProperties(validPostcode);
 
-            listOfAddresses.Should().HaveCountGreaterOrEqualTo(1);
+            listOfProperties.Should().HaveCountGreaterOrEqualTo(1);
+        }
+
+        [Test]
+        public async Task GetListOfAddresses_WhenValidPostcode_EveryPropertyHasAnAddressValue()
+        {
+            const string validPostcode = "E6 1BJ";
+            var dataHandlerModel = new DataHandlerModel();
+
+            var listOfProperties = await dataHandlerModel.GetListOfProperties(validPostcode);
+
+            var propertiesCount = listOfProperties.Count();
+            var addressCount = listOfProperties.Count(p => !string.IsNullOrEmpty(p.Address));
+
+            propertiesCount.Should().Be(addressCount);
         }
 
         [Test]
@@ -26,7 +41,7 @@ namespace EPCPortalTesting.EPCPortalWeb.IntegrationTests
             const string validPostcode = "invalid postcode";
             var dataHandlerModel = new DataHandlerModel();
 
-            var listOfAddresses = await dataHandlerModel.GetListOfAddresses(validPostcode);
+            var listOfAddresses = await dataHandlerModel.GetListOfProperties(validPostcode);
 
             listOfAddresses.Should().BeEmpty();
         }

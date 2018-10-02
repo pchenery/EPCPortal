@@ -11,7 +11,7 @@ namespace EPCPortalWeb.Models
         public string Postcode { get; set; }
         public int HouseNumber { get; set; }
 
-        public async Task<IEnumerable<PropertyAddress>> GetListOfAddresses(string postcode)
+        public async Task<IEnumerable<PropertyAddress>> GetListOfProperties(string postcode)
         {
             var apiCaller = new EpcDataApiCallerService();
             var parameters = new RequestParameters(postcode, 100);
