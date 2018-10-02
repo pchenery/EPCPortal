@@ -7,22 +7,16 @@ namespace EPCPortalWeb.Models
 {
     public class DataHandlerModel
     {
+        //class that takes parameters as a input and outputs a list of addresses for the user 
         public string Postcode { get; set; }
         public int HouseNumber { get; set; }
 
         public string APIAddress { get; set; }
 
-        public List<string> FilterAddressesByHouseNumber(int houseNumber, List<string> listOfAPIAddresses)
+
+        public IEnumerable<string> FilterAddressesByHouseNumber(int houseNumber, List<string> listOfAPIAddresses)
         {
-            List<string> newListOfFilteredAddresses = new List<string>();
-            foreach (var address in listOfAPIAddresses)
-            {
-                if (address.Contains(houseNumber.ToString()))
-                {
-                    newListOfFilteredAddresses.Add(address);
-                }
-            }
-            return newListOfFilteredAddresses;
+            return listOfAPIAddresses.Where(t => t.Contains(houseNumber.ToString()));
         }
     }
 

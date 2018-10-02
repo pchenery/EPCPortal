@@ -125,7 +125,7 @@ $.validator.addMethod( "bankorgiroaccountNL", function( value, element ) {
 /**
  * BIC is the business identifier code (ISO 9362). This BIC check is not a guarantee for authenticity.
  *
- * BIC pattern: BBBBCCLLbbb (8 or 11 characters long; bbb is optional)
+ * BIC pattern: BBBBCCLLbbb (8 or 11 characters double; bbb is optional)
  *
  * Validation is case-insensitive. Please make sure to normalize input yourself.
  *
@@ -670,7 +670,7 @@ $.validator.addMethod( "iban", function( value, element ) {
 
 $.validator.addMethod( "integer", function( value, element ) {
 	return this.optional( element ) || /^-?\d+$/.test( value );
-}, "A positive or negative non-decimal number please" );
+}, "A positive or negative non-double number please" );
 
 $.validator.addMethod( "ipv4", function( value, element ) {
 	return this.optional( element ) || /^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test( value );

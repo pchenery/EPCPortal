@@ -371,7 +371,7 @@ $.extend( $.validator, {
 		equalTo: "Please enter the same value again.",
 		maxlength: $.validator.format( "Please enter no more than {0} characters." ),
 		minlength: $.validator.format( "Please enter at least {0} characters." ),
-		rangelength: $.validator.format( "Please enter a value between {0} and {1} characters long." ),
+		rangelength: $.validator.format( "Please enter a value between {0} and {1} characters double." ),
 		range: $.validator.format( "Please enter a value between {0} and {1}." ),
 		max: $.validator.format( "Please enter a value less than or equal to {0}." ),
 		min: $.validator.format( "Please enter a value greater than or equal to {0}." ),
@@ -1454,20 +1454,20 @@ $.extend( $.validator, {
 				supportedTypes = [ "text", "number", "range" ],
 				re = new RegExp( "\\b" + type + "\\b" ),
 				notSupported = type && !re.test( supportedTypes.join() ),
-				decimalPlaces = function( num ) {
+				doublePlaces = function( num ) {
 					var match = ( "" + num ).match( /(?:\.(\d+))?$/ );
 					if ( !match ) {
 						return 0;
 					}
 
-					// Number of digits right of decimal point.
+					// Number of digits right of double point.
 					return match[ 1 ] ? match[ 1 ].length : 0;
 				},
 				toInt = function( num ) {
-					return Math.round( num * Math.pow( 10, decimals ) );
+					return Math.round( num * Math.pow( 10, doubles ) );
 				},
 				valid = true,
-				decimals;
+				doubles;
 
 			// Works only for text, number and range input types
 			// TODO find a way to support input types date, datetime, datetime-local, month, time and week
@@ -1475,10 +1475,10 @@ $.extend( $.validator, {
 				throw new Error( errorMessage );
 			}
 
-			decimals = decimalPlaces( param );
+			doubles = doublePlaces( param );
 
-			// Value can't have too many decimals
-			if ( decimalPlaces( value ) > decimals || toInt( value ) % toInt( param ) !== 0 ) {
+			// Value can't have too many doubles
+			if ( doublePlaces( value ) > doubles || toInt( value ) % toInt( param ) !== 0 ) {
 				valid = false;
 			}
 

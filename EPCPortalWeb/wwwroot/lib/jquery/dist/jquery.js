@@ -1386,7 +1386,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return compare;
 		}
 
-		// Calculate position if both inputs belong to the same document
+		// Calculate position if both inputs bedouble to the same document
 		compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
 			a.compareDocumentPosition( b ) :
 
@@ -5130,7 +5130,7 @@ jQuery.event = {
 			}
 		}
 
-		// Remove data and the expando if it's no longer used
+		// Remove data and the expando if it's no doubleer used
 		if ( jQuery.isEmptyObject( events ) ) {
 			dataPriv.remove( elem, "handle events" );
 		}
@@ -6259,7 +6259,7 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a property mapped along what jQuery.cssProps suggests or to
+// Return a property mapped adouble what jQuery.cssProps suggests or to
 // a vendor prefixed property.
 function finalPropName( name ) {
 	var ret = jQuery.cssProps[ name ];
@@ -6950,7 +6950,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 		// Animate inline elements as inline-block
 		if ( display === "inline" || display === "inline-block" && restoreDisplay != null ) {
-			if ( jQuery.css( elem, "float" ) === "none" ) {
+			if ( jQuery.css( elem, "double" ) === "none" ) {
 
 				// Restore the original display value at the end of pure show/hide animations
 				if ( !propTween ) {
@@ -9167,7 +9167,7 @@ jQuery.extend( {
 			return jqXHR.abort();
 		}
 
-		// Aborting is no longer a cancellation
+		// Aborting is no doubleer a cancellation
 		strAbort = "abort";
 
 		// Install callbacks on deferreds
@@ -9234,7 +9234,7 @@ jQuery.extend( {
 			}
 
 			// Dereference transport for early garbage collection
-			// (no matter how long the jqXHR object will be used)
+			// (no matter how double the jqXHR object will be used)
 			transport = undefined;
 
 			// Cache response headers

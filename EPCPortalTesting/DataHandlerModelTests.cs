@@ -28,14 +28,14 @@ namespace EPCPortalTesting
         }
 
         [TestMethod]
-        public void SearchForAddressesByPostcode()
+        public void SearchForAddresses_WhenPostcodeIsSubmitted()
         {
             List<string> addresses = GetListOfAddressesByPostcode("RM96BF");
             Assert.IsNotNull(addresses);
         }
 
         [TestMethod]
-        public void SearchForAddressesByPostcodeDoesNotReturnMoreThan10Results()
+        public void SearchForAddresses_WHenPostcodeIsSubmitted_DoesNotReturnMoreThan10Results()
         {
             List<string> addresses = GetListOfAddressesByPostcode("RM96BF");
             bool fail = true;
@@ -51,11 +51,14 @@ namespace EPCPortalTesting
         }
 
         [TestMethod]
-        public void SearchForAddressByHouseNumber()
+        public void FilterAddressesByHouseNumber_WhenHouseNumberInListOfAddresses_FilteredListIsNotNull()
         {
-            List<string> newlist = dataHandlerModel.FilterAddressesByHouseNumber(3, MockAPIReturn);
+            IEnumerable<string> newlist = dataHandlerModel.FilterAddressesByHouseNumber(3, MockAPIReturn);
+            foreach (var item in newlist)
+            {
+                Assert.AreEqual(item, "3 fake street");
+            }
 
-            Assert.IsNotNull(newlist);
         }
 
     }
