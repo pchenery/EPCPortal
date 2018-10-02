@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace EPCData.API
 {
-    public interface IEpcDataApiCallerService<T>
+    public interface IEpcDataApiCallerService
     {
-        Task<IEnumerable<T>> ExecuteRequestAsync(RequestParameters requestParameters);
+        Task<IEnumerable<T>> ExecuteRequestAsync<T>(RequestParameters requestParameters);
     }
 }
