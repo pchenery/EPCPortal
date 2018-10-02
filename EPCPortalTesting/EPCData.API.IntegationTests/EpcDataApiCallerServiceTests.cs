@@ -15,8 +15,8 @@ namespace EPCPortalTesting.EPCData.API.IntegationTests
             public string PropertyNotFoundInResponse { get; set; }
         }
 
-        private const string ValidPostcode = "NW5 2TA";
-        private const int ValidSize = 1;
+        private const string VALIDPOSTCODE = "NW5 2TA";
+        private const int VALIDSIZE = 1;
 
         private IEpcDataApiCallerService service;
 
@@ -30,53 +30,55 @@ namespace EPCPortalTesting.EPCData.API.IntegationTests
         public async Task ExecuteRequestAsync_GivenInvalidPostcodeButValidSize_ThenDataReturnedIsNull()
         {
             const string postcode = "Invalid Postcode";
-            var parameters = new RequestParameters(postcode, ValidSize);
+            var parameters = new RequestParameters(postcode, VALIDSIZE);
 
-            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var epcResponseResults = await service.ExecuteRequestAsync<TestDataModel>(parameters);
 
-            data.Should().BeNullOrEmpty();
+            epcResponseResults.Should().BeNullOrEmpty();
         }
 
         [Test]
         public async Task ExecuteRequestAsync_GivenValidPostcodeAndSize_ThenDataReturnedIsNotNull()
         {
-            var parameters = new RequestParameters(ValidPostcode, ValidSize);
+            var parameters = new RequestParameters(VALIDPOSTCODE, VALIDSIZE);
 
-            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var epcResponseResults = await service.ExecuteRequestAsync<TestDataModel>(parameters);
 
-            data.Should().NotBeNullOrEmpty();
+            epcResponseResults.Should().NotBeNullOrEmpty();
         }
 
         [Test]
         public async Task ExecuteRequestAsync_GivenValidPostcodeAndSize_ThenPropertyThatDoesNotMapToResponseIsNull()
         {
-            var parameters = new RequestParameters(ValidPostcode, ValidSize);
+            var parameters = new RequestParameters(VALIDPOSTCODE, VALIDSIZE);
 
-            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var epcResponseResults = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var firstResult = epcResponseResults.ElementAt(0);
 
-            data.ElementAt(0).PropertyNotFoundInResponse.Should().BeNull();
+            firstResult.PropertyNotFoundInResponse.Should().BeNull();
         }
 
         [Test]
-        public async Task ExecuteRequestAsync_GivenValidPostcodeAndSize_ThenPropertyThatMapsToResponseIsNotNull()
+        public async Task ExecuteRequestAsync_GivenValidPostcodeAndSize_ThenPropertyThatMapsToResponseHasExpectedValue()
         {
-            var parameters = new RequestParameters(ValidPostcode, ValidSize);
+            var parameters = new RequestParameters(VALIDPOSTCODE, VALIDSIZE);
 
-            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var epcResponseResults = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var firstResult = epcResponseResults.ElementAt(0);
 
-            data.ElementAt(0).Postcode.Should().Be(ValidPostcode);
+            firstResult.Postcode.Should().Be(VALIDPOSTCODE);
         }
 
         [Test]
         public async Task ExecuteRequestAsync_GivenValidPostcodeWith10OrMoreAddressesAndSizeIs10_Then10ResultsShouldBeReturned()
         {
             const string postcode = "E6 1BJ";
-            const int size = 10;
-            var parameters = new RequestParameters(postcode, size);
+            const int addressCount = 10;
+            var parameters = new RequestParameters(postcode, addressCount);
 
-            var data = await service.ExecuteRequestAsync<TestDataModel>(parameters);
+            var epcResponseResults = await service.ExecuteRequestAsync<TestDataModel>(parameters);
 
-            data.Should().HaveCount(size);
+            epcResponseResults.Should().HaveCount(addressCount);
         }
     }
 }

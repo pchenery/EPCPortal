@@ -1,28 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace EPCData.API
 {
     public class RequestParameters
     {
-        private const string PostcodeParameterName = "postcode";
-        private const string SizeParameterName = "size";
-        private const int SizeMinValue = 1;
-        private const int SizeMaxValue = 100;
+        private const string POSTCODE_PARAMETER_NAME = "postcode";
+        private const string SIZE_PARAMETER_NAME = "size";
+        private const int SIZE_MIN_VALUE = 1;
+        private const int SIZE_MAX_VALUE = 100;
 
         public SingleRequestParameter Postcode { get; }
         public SingleRequestParameter Size { get; }
-        public IEnumerable<SingleRequestParameter> OptionalParameters { get; }
 
-        public RequestParameters(
-            string postcode, 
-            int size, 
-            IEnumerable<SingleRequestParameter> optionalParameters = null)
+        public RequestParameters(string postcode, int size)
         {
             Postcode = GetPostcodeParameter(postcode);
             Size = GetSizeParameter(size);
-            OptionalParameters = optionalParameters ?? new List<SingleRequestParameter>();
         }
 
         private static SingleRequestParameter GetPostcodeParameter(string postcode)
@@ -34,17 +28,17 @@ namespace EPCData.API
 
             var postcodeValue = Regex.Replace(postcode, @"\s+", "");
 
-            return new SingleRequestParameter(PostcodeParameterName, postcodeValue);
+            return new SingleRequestParameter(POSTCODE_PARAMETER_NAME, postcodeValue);
         }
         
         private static SingleRequestParameter GetSizeParameter(int size)
         {
-            if (size < SizeMinValue || size > SizeMaxValue)
+            if (size < SIZE_MIN_VALUE || size > SIZE_MAX_VALUE)
             {
-                throw new ArgumentException($"Provided size value of {size} was outside the accepted range of {SizeMinValue} and {SizeMaxValue}.");
+                throw new ArgumentException($"Provided size value of {size} was outside the accepted range of {SIZE_MIN_VALUE} and {SIZE_MAX_VALUE}.");
             }
 
-            return new SingleRequestParameter(SizeParameterName, size.ToString());
+            return new SingleRequestParameter(SIZE_PARAMETER_NAME, size.ToString());
         }
     }
 }

@@ -8,14 +8,14 @@ namespace EPCData.API
 {
     public class EpcDataApiCallerService : IEpcDataApiCallerService
     {
-        private const string EpcDataApiUrl = "https://dceas-user-site-staging.cloudapps.digital/api/epc";
+        private const string EPC_DATA_API_URL = "https://dceas-user-site-staging.cloudapps.digital/api/epc";
         private readonly IRestClient client;
 
         public EpcDataApiCallerService()
         {
             client = new RestClient
             {
-                BaseUrl = new Uri(EpcDataApiUrl)
+                BaseUrl = new Uri(EPC_DATA_API_URL)
             };
         }
 
