@@ -8,7 +8,7 @@ namespace EPCPortalWeb.Models
     public class ReportDataModel
     {
         // class to structure data returned from the API into usable items for properties and methods
-
+        public string Address { get; set; }
         public double CurrentHeatingCost { get; set; }
         public double CurrentC02Emmissions { get; set; }
         public double CurrentHotWaterCosts { get; set; }
@@ -28,6 +28,7 @@ namespace EPCPortalWeb.Models
 
         public ReportDataModel()
         {
+            RecommendationsList = new List<Recommendation>();
         }
 
         public void CompareCurrentAndPotentialAlphabeticalValues (string itemName, string currentValue, string potentialValue)
@@ -53,6 +54,7 @@ namespace EPCPortalWeb.Models
             Recommendation recommendation = new Recommendation(itemName);
             recommendation.ItemName = itemName;
             recommendation.PotentialSaving = potentialSavings;
+            RecommendationsList.Add(recommendation);
             
         }
 

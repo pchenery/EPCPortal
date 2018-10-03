@@ -10,22 +10,24 @@ namespace EPCPortalWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(DataHandlerModel dataHandlerModel)
+        public async Task<IActionResult> Index(DataHandlerModel dataHandlerModel)
         {
-            string postcode = dataHandlerModel.Postcode;
-            int houseNumber = dataHandlerModel.HouseNumber;
-            return View();
+            if (dataHandlerModel.Postcode != null)
+            {
+               await dataHandlerModel.GetListOfProperties(); 
+            }
+            
+            return View(dataHandlerModel);
         }
-
-        public IActionResult Report(ReportDataModel reportDataModel)
+        public IActionResult Report()
         {
-            List<Recommendation> recommendationList = reportDataModel.RecommendationsList;
-            //API Call
-            reportDataModel.RecommendationsList = new List<Recommendation>();
-            //foreach (var item in //apicallreturn)
-            //{
-            //    recommendationList.Add(item);
-            //}
+            ReportDataModel reportDataModel = new ReportDataModel();
+            var current = reportDataModel.CurrentC02Emmissions = 12;
+            var potential = reportDataModel.PotentialC02Emmissions = 10;
+
+            reportDataModel.CompareCurrentAndPotentialNumericalValues("C02 Emissions", current, potential);
+           List<Recommendation> recommendationList = reportDataModel.RecommendationsList;
+           
             return View(recommendationList);
         }
         

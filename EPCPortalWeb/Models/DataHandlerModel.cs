@@ -10,19 +10,20 @@ namespace EPCPortalWeb.Models
         //class that takes parameters as a input and outputs a list of addresses for the user 
         public string Postcode { get; set; }
         public int HouseNumber { get; set; }
+        public IEnumerable<string> Address { get; set; }
+        public IEnumerable<ReportDataModel> ReportDataModels { get; set; }
 
-        public async Task<IEnumerable<PropertyAddress>> GetListOfProperties(string postcode)
+        public async Task GetListOfProperties()
         {
             var apiCaller = new EpcDataApiCallerService();
-            var parameters = new RequestParameters(postcode, 100);
-            var propertyAddresses = await apiCaller.ExecuteRequestAsync<PropertyAddress>(parameters);
-
-            return propertyAddresses ?? new List<PropertyAddress>();
+            var parameters = new RequestParameters(Postcode, 100);
+            ReportDataModels = await apiCaller.ExecuteRequestAsync<ReportDataModel>(parameters);
+            Address = ReportDataModels.Select(r => r.Address);
         }
         
-        public IEnumerable<string> FilterAddressesByHouseNumber(int houseNumber, List<string> listOfAPIAddresses)
+        public IEnumerable<ReportDataModel> FilterAddressesByHouseNumber(int houseNumber)
         {
-            return listOfAPIAddresses.Where(t => t.Contains(houseNumber.ToString()));
+            return ReportDataModels.Where(t => t.Address.StartsWith(houseNumber.ToString()));
         }
     }
 
