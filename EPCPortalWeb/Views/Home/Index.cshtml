@@ -7,7 +7,6 @@
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
         @Html.TextBoxFor(m => m.Postcode, new { placeholder = "Please enter a Postcode", @class = "form-control postcode" })
-        @Html.TextBoxFor(m => m.HouseNumber, new { @type = "number", @class = "form-control" })
         <input type="submit" value="Search" />
     }
     @using (Html.BeginForm("Report", "Home", FormMethod.Post))
