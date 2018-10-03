@@ -18,7 +18,11 @@ namespace EPCPortalWeb.Models
             var apiCaller = new EpcDataApiCallerService();
             var parameters = new RequestParameters(Postcode, 100);
             ReportDataModels = await apiCaller.ExecuteRequestAsync<ReportDataModel>(parameters);
-            Address = ReportDataModels.Select(r => r.Address);
+
+            if (ReportDataModels != null)
+            {
+                Address = ReportDataModels.Select(r => r.Address);
+            }           
         }
         
         public IEnumerable<ReportDataModel> FilterAddressesByHouseNumber(int houseNumber)
