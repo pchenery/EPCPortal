@@ -6,8 +6,15 @@
 <div class="main-content">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
-        @Html.TextBoxFor(m => m.Postcode, new { placeholder = "Please enter a Postcode", @class = "form-control" })
-        @Html.TextBoxFor(m=> m.HouseNumber,new { @type = "number", @class = "form-control"})
+        @Html.TextBoxFor(m => m.Postcode, new { placeholder = "Please enter a Postcode", @class = "form-control postcode" })
         <input type="submit" value="Search" />
+    }
+    @using (Html.BeginForm("Report", "Home", FormMethod.Post))
+    {
+        if (Model.ReportDataModels != null)
+        {
+            @Html.DropDownListFor(m => m.ReportDataModels, Model.Address.Select(m => new SelectListItem(m,m)),new { @class = "form-control" })
+              <input type="submit" value="Search" />
+        }
     }
 </div>
