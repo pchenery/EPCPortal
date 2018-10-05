@@ -26,7 +26,12 @@ namespace EPCPortalWeb.Controllers
             var potential = reportDataModel.PotentialC02Emmissions = 10;
 
             reportDataModel.CompareCurrentAndPotentialNumericalValues("C02 Emissions", current, potential);
-           List<Recommendation> recommendationList = reportDataModel.RecommendationsList;
+            reportDataModel.CompareCurrentAndPotentialNumericalValues("Heating Costs", 100, 75);
+            reportDataModel.CompareCurrentAndPotentialNumericalValues("Hot Water", 30, 10);
+            reportDataModel.CompareCurrentAndPotentialNumericalValues("Energy Consumption", 100, 75);
+            reportDataModel.CompareCurrentAndPotentialNumericalValues("Lighting Costs", 50, 30);
+
+            List<Recommendation> recommendationList = reportDataModel.RecommendationsList;
            
             return View(recommendationList);
         }
